@@ -5,7 +5,7 @@ module.exports = templateData => {
   
   var html = `
     <div class="col s3">
-      <div class="card teal">
+      <div class="card grey darken-2">
         <div class="left-align card-panel orange accent-4 manager">
           <h5 class="white-text name">${manager.name}</h5>
           <h6 class="white-text title">Manager</h6>
@@ -14,7 +14,7 @@ module.exports = templateData => {
           <div class="white-text id">ID: ${manager.id}</div>
           <div class="white-text email">
           Email:
-          <a class="white-text" href="mailto:${manager.email}">${manager.email}</a>
+          <a class="blue-text" href="mailto:${manager.email}">${manager.email}</a>
           </div>
           <div class="white-text officeNumber">Office number: ${manager.officeNumber}</div>
         </div>
@@ -24,7 +24,7 @@ module.exports = templateData => {
   engineers.forEach((engineer, index, arr) => {
     html += `
     <div class="col s3">
-      <div class="card teal">
+      <div class="card grey darken-2">
         <div class="left-align card-panel orange accent-4 engineer">
           <h5 class="white-text name">${engineer.name}</h5>
           <h6 class="white-text title">Engineer</h6>
@@ -33,11 +33,11 @@ module.exports = templateData => {
           <div class="white-text id">ID: ${engineer.id}</div>
           <div class="white-text email">
             Email:
-            <a class="white-text activator text-darken-4" href="mailto:${engineer.email}">${engineer.email}</a>
+            <a class="blue-text activator" href="mailto:${engineer.email}">${engineer.email}</a>
           </div>
           <div class="white-text github">
             GitHub:
-            <a class="white-text" href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a>
+            <a class="blue-text" href="https://github.com/${engineer.github}" target="_blank">${engineer.github}</a>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@ module.exports = templateData => {
   interns.forEach((intern, index, arr) => {
     html += `
       <div class="col s3">
-        <div class="card teal">
+        <div class="card grey darken-2">
           <div class="left-align card-panel orange accent-4 engineer">
             <h5 class="white-text name">${intern.name}</h5>
             <h6 class="white-text title">Intern</h6>
@@ -75,7 +75,7 @@ module.exports = templateData => {
   </head>
   <body>
     <nav>
-      <div class="nav-wrapper">
+      <div class="orange darken-4 nav-wrapper">
         <a class="center-align brand-logo center">Team Profile</a>
       </div>
     </nav>

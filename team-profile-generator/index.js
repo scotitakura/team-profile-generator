@@ -164,7 +164,6 @@ promptManager()
     return buildTeam(answers)
   })
   .then(portfolioData => {
-    console.log(portfolioData)
     const pageHTML = generatePage(portfolioData);
 
     fs.writeFile(`./YourTeam.HTML`, pageHTML, err => {
