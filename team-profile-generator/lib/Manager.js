@@ -5,7 +5,7 @@ function Manager(name, id, email, officeNumber) {
   this.officeNumber = officeNumber
   this.getRole = function() {
     return 'Manager'
-  }
-}
+  };
+};
 
 module.exports = Manager

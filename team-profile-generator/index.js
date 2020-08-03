@@ -11,7 +11,6 @@ function requiredField(input) {
     return true;
   } else {
     return "This field is required!";
-    // return false;
   }
 }
 
@@ -49,6 +48,66 @@ const promptManager = () => {
     return { manager: new Manager(answers.name, answers.id, answers.email, answers.officeNumber) };
   });
 };
+const engineerQuestions = [
+  // Name
+  {
+    type: 'input',
+    name: 'name',
+    message: "What is the engineer's name?",
+    validate: requiredField
+  },
+  // ID
+  {
+    type: 'input',
+    name: 'id',
+    message: "What is the engineer's employee ID?",
+    validate: requiredField
+  },
+  // Email
+  {
+    type: 'input',
+    name: 'email',
+    message: "What is the engineer's email?",
+    validate: requiredField
+  },
+  // Github
+  {
+    type: 'input',
+    name: 'github',
+    message: "What is the engineer's GitHub username?",
+    validate: requiredField
+  }
+];
+const internQuestions = [
+  // Name
+  {
+    type: 'input',
+    name: 'name',
+    message: "What is the intern's name?",
+    validate: requiredField
+  },
+  // ID
+  {
+    type: 'input',
+    name: 'id',
+    message: "What is the intern's employee ID?",
+    validate: requiredField
+  },
+  // Email
+  {
+    type: 'input',
+    name: 'email',
+    message: "What is the intern's email?",
+    validate: requiredField
+  },
+  // School
+  {
+    type: 'input',
+    name: 'school',
+    message: "What is the intern's school?",
+    validate: requiredField
+  }
+];
 
 const buildTeam = (data) => {
   return inquirer.prompt([
@@ -69,16 +128,33 @@ const buildTeam = (data) => {
         },
         {
           name:'No',
-          value: false,
+          value: -1,
           short: 'Done'
         }
       ]
     }
   ]).then(response => {
-    if (response.newMember === 1) {
+    if (response.newMember == 1) {
       // Engineer
+      return inquirer.prompt(engineerQuestions)
+        .then(e => {
+          data.engineers.push(new Engineer(e.name, e.id, e.email, e.github));
+          return data;
+        })
+        .then(buildTeam);
+    } else if (response.newMember == 2) {
+      // Intern
+      return inquirer.prompt(internQuestions)
+        .then(i => {
+          data.interns.push(new Intern(i.name, i.id, i.email, i.school));
+          return data;
+        })
+        .then(buildTeam);
+    } else {
+      // Done
+      return data;
     }
-  })
+  });
 }
 
 promptManager()
@@ -88,146 +164,12 @@ promptManager()
     return buildTeam(answers)
   })
   .then(portfolioData => {
+    console.log(portfolioData)
     const pageHTML = generatePage(portfolioData);
 
     fs.writeFile(`./YourTeam.HTML`, pageHTML, err => {
       if (err) throw new Error(err);
 
-      console.log('Page created! Check out index.html in this directory to see it!');
+      console.log('Page created! Check out YourTeam.html in this directory to see it!');
     });
   });
-
-// const promptUser = () => {
-//   return inquirer.prompt([
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'What is your team members name?',
-//       validate: nameInput => {
-//         if (nameInput) {
-//           return true;
-//         } else {
-//           console.log('Please enter your team members name!');
-//           return false;
-//         }
-//       }
-//     },
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'What is your team members name?',
-//       validate: nameInput => {
-//         if (nameInput) {
-//           return true;
-//         } else {
-//           console.log('Please enter your team members name!');
-//           return false;
-//         }
-//       }
-//     },
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'What is your team members name?',
-//       validate: nameInput => {
-//         if (nameInput) {
-//           return true;
-//         } else {
-//           console.log('Please enter your team members name!');
-//           return false;
-//         }
-//       }
-//     },
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'What is your team members name?',
-//       validate: nameInput => {
-//         if (nameInput) {
-//           return true;
-//         } else {
-//           console.log('Please enter your team members name!');
-//           return false;
-//         }
-//       }
-//     },
-//     {
-//       type: 'confirm',
-//       name: 'confirmAbout',
-//       message: 'Would you like to enter some information about yourself for an "About" section?',
-//       default: true
-//     },
-//     {
-//       type: 'input',
-//       name: 'about',
-//       message: 'Provide some information about yourself:',
-//       when: ({ confirmAbout }) => confirmAbout
-//     },
-//   ]);
-// };
-
-// const promptProject = portfolioData => {
-//   portfolioData.projects = [];
-//   if (!portfolioData.projects) {
-//     portfolioData.projects = [];
-//   }
-//   console.log(`
-// =================
-// Add a New Project
-// =================
-// `);
-//   return inquirer.prompt([
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'What is the name of your project?'
-//     },
-//     {
-//       type: 'input',
-//       name: 'description',
-//       message: 'Provide a description of the project (Required)'
-//     },
-//     {
-//       type: 'checkbox',
-//       name: 'languages',
-//       message: 'What did you this project with? (Check all that apply)',
-//       choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
-//     },
-//     {
-//       type: 'input',
-//       name: 'link',
-//       message: 'Enter the GitHub link to your project. (Required)'
-//     },
-//     {
-//       type: 'confirm',
-//       name: 'feature',
-//       message: 'Would you like to feature this project?',
-//       default: false
-//     },
-//     {
-//       type: 'confirm',
-//       name: 'confirmAddProject',
-//       message: 'Would you like to enter another project?',
-//       default: false
-//     }
-//   ]).then(projectData => {
-//     portfolioData.projects.push(projectData);
-//     if (projectData.confirmAddProject) {
-//       return promptProject(portfolioData);
-//     } else {
-//       return portfolioData;
-//     }
-//   });
-// };
-
-// promptUser()
-//   .then(promptProject)
-//   .then(portfolioData => {
-//     const pageHTML = generatePage(portfolioData);
-
-//     fs.writeFile(`./YourTeam.HTML`, pageHTML, err => {
-//       if (err) throw new Error(err);
-
-//       console.log('Page created! Check out index.html in this directory to see it!');
-//     });
-//   });

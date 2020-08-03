@@ -14,7 +14,7 @@ function Employee(name, id, email) {
   }
   this.getRole = function() {
     return 'Employee'
-  }
-}
+  };
+};
 
 module.exports = Employee
