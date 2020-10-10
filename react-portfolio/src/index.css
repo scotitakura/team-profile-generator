@@ -1,0 +1,78 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  --maingreen: #42622D;
+  --mainbrown: #5C514A;
+  --mainblue: #38669A;
+  --mainwhite: #E1E4EA;
+}
+
+* {
+  color: var(--mainwhite);
+  background-color: var(--mainbrown);
+}
+
+.color-green {
+  color: var(--maingreen);
+}
+
+.background-green {
+  background-color: var(--maingreen);
+}
+
+.color-brown {
+  color: var(--mainbrown);
+}
+
+.background-brown {
+  background-color: var(--mainbrown);
+}
+
+.color-blue {
+  color: var(--mainblue);
+}
+
+.background-blue {
+  background-color: var(--mainblue);
+}
+
+.color-white {
+  color: var(--mainwhite);
+}
+
+.background-white {
+  background-color: var(--mainwhite);
+}
+
+.font-small {
+  font-size: 100%;
+}
+.font-med {
+  font-size: 150%;
+}
+.font-large {
+  font-size: 300%;
+}
+
+.hero {
+  background-image: url("./assets/images/DSC02878.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
