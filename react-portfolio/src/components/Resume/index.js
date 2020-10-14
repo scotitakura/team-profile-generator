@@ -1,31 +1,28 @@
-import React from 'react';
+import React from "react";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Resume() {
-  const currentCategory = { name: "resume", description: "Resume page"};
+  const currentCategory = { name: "resume", description: "Resume page" };
   return (
-    <section>
-      <h2>{currentCategory.name}</h2>
+    <section className="container">
+      <h2>{capitalizeFirstLetter(currentCategory.name)}</h2>
       <div>
         <h4>Work Experience</h4>
         <div className="container">
           <div className="row">
-            <h5 className="col">
-              Berkeley Coding Bootcamp
-            </h5>
+            <h5 className="col">Berkeley Coding Bootcamp</h5>
             <p className="right-align col">(June-Oct 2020)</p>
           </div>
         </div>
         <div className="container">
           <div className="row">
-            <h5 className="col">
-              University of California, Santa Cruz
-            </h5>
+            <h5 className="col">University of California, Santa Cruz</h5>
             <p className="right-align col">(2014-2018)</p>
           </div>
           <li>Earth Science, Bachelor of Science</li>
         </div>
         <ul className="font-med">
-            - Front-End Technical Skills
+          Front-End Technical Skills
           <li>
             <ul className="browser-default">
               <li>HTML</li>
@@ -35,9 +32,9 @@ function Resume() {
               <li>Handlebars</li>
             </ul>
           </li>
-            - Past Coding Experience
+          Bachelor of Science Coding Programs
           <li>
-            <ul>
+            <ul className="browser-default">
               <li>MATLAB</li>
               <li>Python</li>
               <li>Scipy</li>

@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { capitalizeFirstLetter } from "../../utils/helpers";
 
 function Contact() {
   const [btnClass, setBtnClass] = useState("btn disabled");
-  const [name,setName] = useState('');
-  const [email,setEmail] = useState('');
-  const [contents,setContents] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [contents, setContents] = useState("");
 
   const handleClick = () => {
-    console.log('SUBMITTING');
-  }
+    console.log("SUBMITTING");
+  };
 
   useEffect(() => {
-    console.log("is rerendering",name)
-    if(
-      name &&
-      email && 
-      contents
-    ) {
-      setBtnClass('btn')
+    console.log("is rerendering", name);
+    if (name && email && contents) {
+      setBtnClass("btn");
     } else {
-      setBtnClass('btn disabled')
+      setBtnClass("btn disabled");
     }
-  }, [name])
+  }, [name]);
 
   const currentCategory = {
     name: "contact me",
@@ -29,8 +26,8 @@ function Contact() {
   };
 
   return (
-    <section>
-      <h1>{currentCategory.name}</h1>
+    <section className="container">
+      <h1>{capitalizeFirstLetter(currentCategory.name)}</h1>
       <div className="row">
         <div className="input-field col s12">
           <input
@@ -44,15 +41,30 @@ function Contact() {
           <label htmlFor="name">Name</label>
         </div>
         <div className="input-field col s12">
-          <input id="email" value={email} type="email" className="validate" required onChange={e => setEmail(e.target.value)}/>
+          <input
+            id="email"
+            value={email}
+            type="email"
+            className="validate"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
           <label htmlFor="email">Email</label>
         </div>
         <div className="input-field col s12">
-          <textarea id="textarea1" value={contents} className="materialize-textarea validate" required onChange={e => setContents(e.target.value)}/>
+          <textarea
+            id="textarea1"
+            value={contents}
+            className="materialize-textarea validate"
+            required
+            onChange={(e) => setContents(e.target.value)}
+          />
           <label htmlFor="textarea1">Contents</label>
         </div>
       </div>
-      <a className={btnClass} onClick={() => handleClick()}>Button</a>
+      <a className={btnClass} onClick={() => handleClick()}>
+        Button
+      </a>
     </section>
   );
 }
